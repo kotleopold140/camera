@@ -1,0 +1,430 @@
+Make(delphi)
+ver(4.05 build 186)
+Add(MainForm,2953706,21,147)
+{
+ Width=325
+ Height=265
+ Font=[Microsoft Sans Serif,8,0,0,1]
+ Name="Main"
+ Caption="Камера"
+ BorderStyle=1
+ SavePosName="camera"
+ Position=1
+ Point(onClose)
+ link(onCreate,3909340:doWork3,[(186,167)])
+ link(onClose,6606263:doWork3,[(193,174)])
+}
+Add(WebCam,11453916,224,112)
+{
+ RefreshRate=0
+ Point(doEditCopy)
+ Point(doSaveDIB)
+ Point(doStartSequence)
+ Point(doStopSequence)
+ Point(doVideoSource)
+ Point(doVideoFormat)
+ Point(doVideoCompression)
+ Point(RefreshRate)
+ Point(ViewStyle)
+ Point(doRefreshRate)
+ Point(doViewStyle)
+ link(FileDIB,5666335:FormatTime,[(230,100)(272,100)(272,135)(314,135)])
+ link(FileVideo,9227995:FormatTime,[(237,100)(303,100)(303,135)(370,135)])
+ link(WinHandle,14192429:Var1,[(244,79)(249,79)])
+ link(RefreshRate,13103852:Var1,[(251,100)(153,100)(153,204)(76,204)])
+}
+Add(ChildPanel,14192429,243,14)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,13469514,21,21)
+  {
+   WorkCount=2
+   VarCount=1
+   link(doWork1,16538253:doWork1,[(42,27)(42,69)])
+   link(doWork2,16538253:doWork2,[(42,34)(42,76)])
+   link(Var1,14431767:Handle,[(27,179)(41,179)])
+  }
+  Add(Panel,14431767,35,105)
+  {
+   Width=320
+   Height=201
+   Align=1
+   Font=[Microsoft Sans Serif,8,0,0,1]
+   Point(Handle)
+  }
+  Add(Label,15628829,112,63)
+  {
+   Left=90
+   Top=95
+   Width=162
+   Height=17
+   Font=[Microsoft Sans Serif,8,2,0,1]
+   Visible=1
+   Caption="нажмите ON для соединения"
+   AutoSize=1
+   Point(doVisible)
+  }
+  Add(ChanelToIndex,16538253,63,63)
+  {
+   link(onIndex,15628829:doVisible,[(103,69)(103,76)])
+  }
+END_SDK
+Add(ChildPanel,13103852,70,126)
+{
+ link(onEvent1,6792500:doEvent1,[(145,132)(145,104)])
+ link(onEvent2,12154040:doEvent1,[(152,139)(152,125)])
+ link(onEvent4,11453916:doStartSequence,[(152,153)(152,146)])
+ link(onEvent5,11453916:doStopSequence,[(152,160)(152,153)])
+ link(onEvent6,11453916:doVideoSource,[(152,167)(152,160)])
+ link(onEvent7,11453916:doVideoFormat,[(152,174)(152,167)])
+ link(onEvent8,11453916:doVideoCompression,[(152,181)(152,174)])
+ link(onEvent9,11453916:doRefreshRate,[(152,188)(152,181)])
+ link(onEvent10,11453916:doEditCopy,[(152,195)(152,132)])
+}
+BEGIN_SDK
+  Add(EditMulti,2836477,21,21)
+  {
+   EventCount=10
+   WorkCount=2
+   VarCount=1
+   Width=517
+   Height=396
+   link(doWork1,1856929:doWork2,[(39,27)(39,209)])
+   link(doWork2,1856929:doWork1,[(39,34)(39,202)])
+   link(Var1,3692375:Var1,[(27,333)(104,333)])
+  }
+  Add(Panel,8477956,35,105)
+  {
+   Top=201
+   Width=319
+   Height=35
+   Align=4
+   Font=[Microsoft Sans Serif,8,0,0,1]
+   Name="Preview"
+  }
+  Add(Button,5251620,168,35)
+  {
+   Left=5
+   Top=5
+   Width=40
+   Height=25
+   Font=[Microsoft Sans Serif,8,0,0,204]
+   Enabled=1
+   Hint="Подключение камеры"
+   Caption="ON"
+   Point(doEnabled)
+   link(onClick,12218799:doEvent1,[])
+  }
+  Add(Button,13125428,147,83)
+  {
+   Left=45
+   Top=5
+   Width=40
+   Height=25
+   Font=[Microsoft Sans Serif,8,0,0,204]
+   Hint="Отключение камеры"
+   Caption="OFF"
+   Point(doEnabled)
+   link(onClick,12851196:doEvent1,[(191,89)(191,90)])
+  }
+  Add(Button,10920655,119,126)
+  {
+   Left=100
+   Top=7
+   Width=60
+   Font=[Microsoft Sans Serif,8,0,0,204]
+   Hint="Захват фото в файл и в буфер обмена."
+   Caption="Фото"
+   Point(doEnabled)
+   link(onClick,11541294:doPopupHere,[])
+  }
+  Add(Button,12101541,182,175)
+  {
+   Left=170
+   Top=7
+   Width=50
+   Font=[Microsoft Sans Serif,8,0,0,204]
+   Hint="Захват видео в файл"
+   Caption="Видео"
+   Point(doEnabled)
+   link(onClick,472640:doEvent1,[(240,181)(240,223)])
+  }
+  Add(Button,1972080,176,251)
+  {
+   Left=225
+   Top=7
+   Width=45
+   Font=[Microsoft Sans Serif,8,0,0,204]
+   Enabled=1
+   Hint="Остановка записи видео"
+   Caption="Стоп"
+   Point(doEnabled)
+   link(onClick,2164484:doEvent1,[(220,257)(220,300)])
+  }
+  Add(Button,12284857,58,272)
+  {
+   Left=275
+   Top=5
+   Width=40
+   Height=25
+   Font=[Microsoft Sans Serif,8,0,0,204]
+   Hint="Настройки"
+   Caption="Меню"
+   Point(doEnabled)
+   link(onClick,3692375:doWork1,[(94,278)(94,279)])
+  }
+  Add(ChildForm,3692375,98,273)
+  {
+   link(onEvent1,2836477:onEvent6,[(225,279)(225,62)])
+   link(onEvent2,2836477:onEvent7,[(226,286)(226,69)])
+   link(onEvent3,2836477:onEvent8,[(226,293)(226,76)])
+   link(onEvent4,2836477:onEvent9,[(226,300)(226,83)])
+  }
+  BEGIN_SDK
+    Add(EditMulti,16282573,21,21)
+    {
+     EventCount=4
+     WorkCount=2
+     VarCount=1
+     link(doWork1,3735907:doVisible,[(28,27)(28,139)])
+     link(doWork2,14376125:doWork1,[(39,34)])
+     link(Var1,15824180:Var1,[(27,182)(248,182)])
+    }
+    Add(MainForm,3735907,49,105)
+    {
+     Left=35
+     Top=105
+     Width=411
+     Height=166
+     Font=[Microsoft Sans Serif,8,0,0,1]
+     Visible=1
+     Name="Settings"
+     Caption="Настройки"
+     BorderStyle=4
+     SavePosName="camera\menuform"
+     Point(doVisible)
+    }
+    Add(ChildGroupBox,884706,210,49)
+    {
+     link(onEvent1,16282573:onEvent1,[(302,55)(302,27)])
+     link(onEvent2,16282573:onEvent2,[(302,62)(302,34)])
+     link(onEvent3,16282573:onEvent3,[(302,69)(302,41)])
+    }
+    BEGIN_SDK
+      Add(EditMulti,13108751,21,21)
+      {
+       EventCount=3
+      }
+      Add(GroupBox,9691927,35,105)
+      {
+       Width=405
+       Align=2
+       Font=[Microsoft Sans Serif,8,0,0,1]
+       Caption="Основные настройки"
+      }
+      Add(Button,158825,119,42)
+      {
+       Left=10
+       Top=20
+       Width=125
+       Font=[Microsoft Sans Serif,8,0,0,1]
+       Caption="Источник"
+       link(onClick,13108751:onEvent1,[(236,48)(236,27)])
+      }
+      Add(Button,10049880,151,90)
+      {
+       Left=140
+       Top=20
+       Width=125
+       Font=[Microsoft Sans Serif,8,0,0,1]
+       Caption="Видеоформат"
+       link(onClick,13108751:onEvent2,[(252,96)(252,34)])
+      }
+      Add(Button,11723755,173,166)
+      {
+       Left=270
+       Top=20
+       Width=125
+       Font=[Microsoft Sans Serif,8,0,0,1]
+       Caption="Изображение"
+       link(onClick,13108751:onEvent3,[(263,172)(263,41)])
+      }
+    END_SDK
+    Add(ChildGroupBox,15824180,242,111)
+    {
+     link(onEvent1,16282573:onEvent4,[(270,117)(270,48)])
+    }
+    BEGIN_SDK
+      Add(EditMulti,1955871,21,21)
+      {
+       EventCount=1
+       VarCount=1
+       link(Var1,6344206:Position,[(27,165)(160,165)])
+      }
+      Add(GroupBox,1586539,35,105)
+      {
+       Top=50
+       Width=405
+       Height=57
+       Align=2
+       Font=[Microsoft Sans Serif,8,0,0,1]
+       Caption="Другое"
+      }
+      Add(Label,10765656,70,49)
+      {
+       Left=10
+       Top=20
+       Width=130
+       Font=[Microsoft Sans Serif,8,0,0,1]
+       Caption="Задержка обновления:"
+       AutoSize=1
+      }
+      Add(Label,7632959,199,28)
+      {
+       Left=360
+       Top=20
+       Width=35
+       Font=[Microsoft Sans Serif,8,0,0,1]
+       Caption="(мс)"
+       AutoSize=1
+      }
+      Add(TrackBar,6344206,154,77)
+      {
+       Left=140
+       Top=15
+       Width=205
+       Font=[Microsoft Sans Serif,8,0,0,1]
+       HintPosition=0
+       Max=15
+       Min=1
+       Position=1
+       link(onPosition,1955871:onEvent1,[(254,83)(254,27)])
+      }
+    END_SDK
+    Add(Button,53812,112,63)
+    {
+     Left=345
+     Top=110
+     Font=[Microsoft Sans Serif,8,0,0,1]
+     Caption="ОК"
+     link(onClick,14376125:doWork2,[(156,69)(156,101)(23,101)(23,132)])
+    }
+    Add(HubEx,14376125,35,126)
+    {
+     link(onEvent,3735907:doClose,[])
+    }
+  END_SDK
+  Add(PopupMenu,11541294,168,126)
+  {
+   Menu=#6:В файл|1:-|14:В буфер обмена|
+   link(onClick,12973209:doEvent,[])
+  }
+  Add(IndexToChanel,12973209,210,126)
+  {
+   Count=4
+  }
+  Add(ChanelToIndex,1856929,56,196)
+  {
+   link(onIndex,9644754:doEvent1,[])
+  }
+  Add(Hub,9644754,105,196)
+  {
+   OutCount=4
+   link(onEvent1,10920655:doEnabled,[(131,202)(131,167)(107,167)(107,132)])
+   link(onEvent2,12284857:doEnabled,[(131,209)(131,243)(46,243)(46,278)])
+   link(onEvent3,10498209:doEvent1,[(137,216)(137,181)])
+   link(onEvent4,7148123:doEvent1,[])
+  }
+  Add(Hub,12851196,203,84)
+  {
+   OutCount=4
+   link(onEvent1,2836477:onEvent2,[(282,89)(282,34)])
+   link(onEvent2,578320:doWork1,[(229,97)(229,85)(79,85)(79,97)])
+   link(onEvent3,5855697:doWork2,[(229,104)(229,80)(107,80)(107,55)])
+   link(onEvent4,3692375:doWork2,[(229,111)(229,199)(86,199)(86,286)])
+  }
+  Add(ChanelToIndex,5855697,119,42)
+  {
+   link(onIndex,5251620:doEnabled,[(159,48)(159,41)])
+  }
+  Add(ChanelToIndex,578320,91,91)
+  {
+   link(onIndex,13125428:doEnabled,[(135,97)(135,89)])
+  }
+  Add(Hub,12218799,210,35)
+  {
+   OutCount=3
+   link(onEvent1,2836477:onEvent1,[(278,41)(278,27)])
+   link(onEvent2,5855697:doWork1,[(236,48)(236,36)(107,36)(107,48)])
+   link(onEvent3,578320:doWork2,[(236,55)(236,79)(79,79)(79,104)])
+  }
+  Add(Hub,472640,252,217)
+  {
+   OutCount=3
+   link(onEvent1,3998595:doWork1,[(273,223)(273,265)])
+   link(onEvent3,3018652:doWork2,[(278,237)(278,247)(100,247)(100,258)])
+  }
+  Add(Hub,2164484,231,294)
+  {
+   OutCount=3
+   link(onEvent2,3018652:doWork1,[(257,307)(257,262)(100,262)(100,251)])
+   link(onEvent3,3998595:doWork2,[(263,314)(263,272)])
+  }
+  Add(Hub,7148123,154,217)
+  {
+   InCount=2
+   OutCount=1
+   link(onEvent1,1972080:doEnabled,[(172,223)(172,257)])
+  }
+  Add(Hub,10498209,154,175)
+  {
+   InCount=2
+   OutCount=1
+   link(onEvent1,12101541:doEnabled,[])
+  }
+  Add(ChanelToIndex,3018652,112,245)
+  {
+   link(onIndex,7148123:doEvent2,[(149,251)(149,230)])
+  }
+  Add(ChanelToIndex,3998595,280,259)
+  {
+   link(onIndex,10498209:doEvent2,[(324,265)(324,227)(142,227)(142,188)])
+  }
+END_SDK
+Add(Version,5107503,21,63)
+{
+ Version="0.1_28032020"
+ Description="Camera"
+ InternalName="camera.exe"
+}
+Add(HubEx,3909340,182,112)
+{
+ link(onEvent,11453916:doConnect,[])
+}
+Add(HubEx,6606263,189,119)
+{
+ link(onEvent,11453916:doDisConnect,[])
+}
+Add(Time,5666335,308,91)
+{
+ Format="PIC_DMY_hms.jpg"
+}
+Add(Time,9227995,364,91)
+{
+ Format="VID_DMY_hms.avi"
+}
+Add(Hub,6792500,154,98)
+{
+ OutCount=3
+ link(onEvent1,3909340:doWork2,[(176,104)(176,118)])
+ link(onEvent2,14192429:doWork1,[(192,111)(192,20)])
+ link(onEvent3,13103852:doWork1,[(180,118)(180,125)(58,125)(58,132)])
+}
+Add(Hub,12154040,161,119)
+{
+ OutCount=3
+ link(onEvent1,6606263:doWork2,[])
+ link(onEvent2,14192429:doWork2,[(196,132)(196,27)])
+ link(onEvent3,13103852:doWork2,[(187,139)(187,127)(58,127)(58,139)])
+}
